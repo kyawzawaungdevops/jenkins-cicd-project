@@ -32,6 +32,20 @@ pipeline {
                 echo 'Login successfully'
             }
         }
+           
+        stage('Install Docker') {
+            steps {
+                script {
+                    // Commands to install Docker on Ubuntu/Debian-based systems
+                    sh '''
+                        sudo apt-get update
+                        sudo apt-get install -y docker.io
+                        sudo systemctl start docker
+                        sudo systemctl enable docker
+                    '''
+                }
+            }
+        }
         stage('Build Docker Image')
         {
             steps
