@@ -3,7 +3,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'sanjeevkt720/jenkins-flask-app'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        KUBECONFIG = credentials('kubeconfig-credentials-id')
+        KUBECONFIG = credentials('kubeconfig.txt')
 
     }
     stages {
@@ -53,6 +53,12 @@ pipeline {
             steps {
                 sh "kubectl apply -f deployment.yaml"
                 echo "Deployed to EKS Cluster"
+            }
+        }
+        stage('Deploy to EKS Prod env') {
+            steps {
+                sh "kubectl apply -f deployment_production.yaml"
+                echo "Deployed to Prod EKS Cluster"
             }
         }
     }
