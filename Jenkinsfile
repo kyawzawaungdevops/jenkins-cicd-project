@@ -38,10 +38,10 @@ pipeline {
                 script {
                     // Commands to install Docker on Ubuntu/Debian-based systems
                     sh '''
-                        sudo apt-get update
-                        sudo apt-get install -y docker.io
-                        sudo systemctl start docker
-                        sudo systemctl enable docker
+                        apt-get update
+                        apt-get install -y docker.io
+                        systemctl start docker
+                        systemctl enable docker
                     '''
                 }
             }
